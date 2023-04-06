@@ -1,7 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import './style.scss';
 
 export const AuthLayout: React.FC = () => {
-  return <div className="auth-layout">Auth</div>;
+  return (
+    <div className="auth-layout">
+      <Outlet />
+    </div>
+  );
 };
