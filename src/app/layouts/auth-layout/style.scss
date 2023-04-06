@@ -1,5 +1,11 @@
 @import 'src/styles/theme/index.scss';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .auth-layout {
   background-color: $main-background-color;
   width: 100vw;
