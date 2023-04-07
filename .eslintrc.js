@@ -33,6 +33,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-key': 1,
+    'no-param-reassign': 0,
     '@typescript-eslint/typedef': 2,
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/consistent-type-assertions': 0,
