@@ -8,9 +8,15 @@ interface IPasswordInputProps {
   id: string;
   label: string;
   onChange: any;
+  rest: any;
 }
 
-export const PasswordInput = ({ label, id, onChange }: IPasswordInputProps) => {
+export const PasswordInput = ({
+  label,
+  id,
+  onChange,
+  ...rest
+}: IPasswordInputProps) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const togglePassword = () => {
@@ -21,6 +27,7 @@ export const PasswordInput = ({ label, id, onChange }: IPasswordInputProps) => {
     <div className="input-wrapper">
       <label htmlFor={id}>{label}</label>
       <input
+        {...rest}
         onChange={onChange}
         type={passwordShown ? 'text' : 'password'}
         id={id}

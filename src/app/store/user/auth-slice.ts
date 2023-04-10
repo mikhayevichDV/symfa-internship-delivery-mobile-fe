@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@store/store';
-import { authApi } from '../auth-api';
-import { IUserRequest, IUserResponse } from './user.interface';
+import { IUserRequest, IUserResponse } from './models/user.interface';
+import { authApi } from './auth-api';
 
 const initialState: IUserResponse = {
   user: null,

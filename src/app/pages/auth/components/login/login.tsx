@@ -1,15 +1,32 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Button, EmailInput, PasswordInput } from '@components/ui-kit';
-import { useAppDispatch } from '@core/hooks';
-import { useGetCurrentUserQuery, useLoginUserMutation } from '@store/user';
-import { setToken, setUser } from '@store/user/models/auth-slice';
+import { Button, PasswordInput, TextInput } from '@components/ui-kit';
+import { useAppDispatch, useAppSelector } from '@core/hooks';
+import {
+  setToken,
+  setUser,
+  useGetCurrentUserQuery,
+  useLoginUserMutation,
+} from '@store/user';
 
 import './style.scss';
 
 export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onSubmit',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const selectedToken: string = useAppSelector(state => state.user.token);
 
   const onEmailChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +47,7 @@ export const Login = () => {
   const [loginUser, { data: loggedUser, isLoading, isSuccess }] =
     useLoginUserMutation();
 
-  const { data: allLoggedUser } = useGetCurrentUserQuery(loggedUser?.token);
+  const { data: allLoggedUser } = useGetCurrentUserQuery(selectedToken);
 
   const onFinish = async () => {
     if (email && password) {
@@ -51,19 +68,39 @@ export const Login = () => {
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <form className="login" onSubmit={onFinish}>
+        <form className="login" onSubmit={handleSubmit(onFinish)}>
           <div className="login-inputs">
-            <EmailInput
+            <TextInput
+              rest={{
+                ...register('email', {
+                  required: { value: true, message: 'Required field!' },
+                }),
+              }}
               onChange={onEmailChange}
               label="Email Address"
               type="email"
-              id="email-address"
+              id="email"
             />
+            {errors?.email?.message && (
+              <div className="register-inputs-error_container">
+                {errors?.email?.message}
+              </div>
+            )}
             <PasswordInput
+              rest={{
+                ...register('password', {
+                  required: { value: true, message: 'Required field!' },
+                }),
+              }}
               onChange={onPasswordChange}
               label="Password"
               id="password"
             />
+            {errors?.password?.message && (
+              <div className="register-inputs-error_container">
+                {errors?.password?.message}
+              </div>
+            )}
           </div>
 
           <div className="login-button">
