@@ -6,6 +6,16 @@
   border-bottom: 1px solid $header-font-color;
   width: 80vw;
 
+  .password_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-password_field {
+    width: 100%;
+  }
+
   button {
     height: 25px;
     width: 25px;

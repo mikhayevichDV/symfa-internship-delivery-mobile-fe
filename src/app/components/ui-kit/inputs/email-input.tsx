@@ -8,7 +8,7 @@ interface ITextInputProps {
   label: string;
   type: string;
   onChange: any;
-  rest: UseFormRegisterReturn<any>;
+  validation: UseFormRegisterReturn<'email' | 'username'>;
 }
 
 export const TextInput = ({
@@ -16,12 +16,18 @@ export const TextInput = ({
   id,
   type,
   onChange,
-  ...rest
+  validation,
 }: ITextInputProps) => {
   return (
     <div className="input-wrapper">
       <label htmlFor={id}>{label}</label>
-      <input {...rest} onChange={onChange} className="" type={type} id={id} />
+      <input
+        {...validation}
+        onChange={onChange}
+        className=""
+        type={type}
+        id={id}
+      />
     </div>
   );
 };

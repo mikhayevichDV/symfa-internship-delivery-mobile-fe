@@ -71,7 +71,7 @@ export const Login = () => {
         <form className="login" onSubmit={handleSubmit(onFinish)}>
           <div className="login-inputs">
             <TextInput
-              rest={{
+              validation={{
                 ...register('email', {
                   required: { value: true, message: 'Required field!' },
                 }),
@@ -87,7 +87,7 @@ export const Login = () => {
               </div>
             )}
             <PasswordInput
-              rest={{
+              validation={{
                 ...register('password', {
                   required: { value: true, message: 'Required field!' },
                 }),

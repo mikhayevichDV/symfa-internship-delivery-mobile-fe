@@ -25,7 +25,6 @@ export const Register = () => {
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const navigate = useNavigate();
 
   const onEmailChange = useCallback(
@@ -49,15 +48,6 @@ export const Register = () => {
     [],
   );
 
-  const onConfirmPasswordChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setConfirmPassword(event.target.value);
-    },
-    [],
-  );
-
-  console.log(email, username, password, confirmPassword);
-
   const onFinish = async () => {
     await createdUser({ username, email, password });
     reset();
@@ -68,7 +58,7 @@ export const Register = () => {
     <form className="register" onSubmit={handleSubmit(onFinish)}>
       <div className="register-inputs">
         <TextInput
-          rest={{
+          validation={{
             ...register('username', {
               minLength: {
                 value: 4,
@@ -91,7 +81,7 @@ export const Register = () => {
           </div>
         )}
         <TextInput
-          rest={{
+          validation={{
             ...register('email', {
               pattern: {
                 value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i,
@@ -101,7 +91,7 @@ export const Register = () => {
           }}
           onChange={onEmailChange}
           label="Email"
-          type="email"
+          type="text"
           id="email-address"
         />
         {errors?.email?.message && (
@@ -110,8 +100,14 @@ export const Register = () => {
           </div>
         )}
         <PasswordInput
-          rest={{
-            ...register('password', {}),
+          validation={{
+            ...register('password', {
+              required: 'You must specify a password',
+              minLength: {
+                value: 8,
+                message: 'Password must have at least 8 characters',
+              },
+            }),
           }}
           onChange={onPasswordChange}
           label="Password"
@@ -123,10 +119,13 @@ export const Register = () => {
           </div>
         )}
         <PasswordInput
-          rest={{
-            ...register('confirmPassword', {}),
+          validation={{
+            ...register('confirmPassword', {
+              required: 'You must specify a confirm password',
+              validate: value =>
+                value === password || 'The passwords do not match',
+            }),
           }}
-          onChange={onConfirmPasswordChange}
           label="Confirm password"
           id="confirm-password"
         />
