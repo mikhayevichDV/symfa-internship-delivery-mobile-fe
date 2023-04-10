@@ -1,0 +1,22 @@
+.register {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 65vh;
+
+  &-inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-error_container {
+      color: red;
+    }
+  }
+
+  &-button {
+    position: absolute;
+    bottom: 30px;
+  }
+}

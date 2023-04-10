@@ -1,15 +1,12 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import './style.scss';
 
 interface IMainButtonProps {
   label: string;
+  type: string;
 }
 
-export const MainButton: FC<IMainButtonProps> = ({ label }) => {
-  return (
-    <button type="submit" className="main-button">
-      {label}
-    </button>
-  );
+export const Button = ({ label, type }: IMainButtonProps) => {
+  return <input type={type} className="btn" value={label} />;
 };
