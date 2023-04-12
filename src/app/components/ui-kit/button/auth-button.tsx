@@ -7,6 +7,6 @@ interface IMainButtonProps {
   type: string;
 }
 
-export const Button = ({ label, type }: IMainButtonProps) => {
+export const AuthButton = ({ label, type }: IMainButtonProps) => {
   return <input type={type} className="btn" value={label} />;
 };

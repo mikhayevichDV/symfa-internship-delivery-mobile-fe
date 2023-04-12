@@ -7,11 +7,52 @@ export const productsApi = createApi({
   endpoints: builder => ({
     getProducts: builder.query({
       query: params => ({
-        url: 'products',
+        url: 'products/all',
+        params,
+      }),
+    }),
+    getProductsByTitle: builder.query({
+      query: params => ({
+        url: `products/title/${params}`,
+        params,
+      }),
+    }),
+    getTypes: builder.query({
+      query: () => {
+        return {
+          url: `products/types`,
+          method: 'GET',
+        };
+      },
+    }),
+    getFlavourTypes: builder.query({
+      query: () => {
+        return {
+          url: `products/flavourTypes`,
+          method: 'GET',
+        };
+      },
+    }),
+    getProductsByType: builder.query({
+      query: params => ({
+        url: `products/type/${params}`,
+        params,
+      }),
+    }),
+    getProductsByFlavourType: builder.query({
+      query: params => ({
+        url: `products/flavourType /${params}`,
         params,
       }),
     }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const {
+  useGetProductsQuery,
+  useGetProductsByTitleQuery,
+  useGetTypesQuery,
+  useGetFlavourTypesQuery,
+  useGetProductsByTypeQuery,
+  useGetProductsByFlavourTypeQuery,
+} = productsApi;

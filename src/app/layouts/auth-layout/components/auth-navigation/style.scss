@@ -29,22 +29,10 @@
     color: $description-font-color;
   }
 
-  &-buttons {
+  &-navbar {
     position: absolute;
+    display: flex;
+    justify-content: space-between;
     bottom: 0;
-    font-weight: 400;
-    font-size: 18px;
-
-    button {
-      width: 40vw;
-      padding: 15px;
-      border: 0;
-      color: #2B2D33;
-      background: transparent;
-    }
-
-    .isActive {
-      border-bottom: 2px solid $main-button-background-color;
-    }
   }
 }

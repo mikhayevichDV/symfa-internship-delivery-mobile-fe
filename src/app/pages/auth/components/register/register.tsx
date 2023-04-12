@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Button, PasswordInput, TextInput } from '@components/ui-kit';
+import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
 import { useCreateUserMutation } from '@store/user';
 
 import './style.scss';
@@ -137,7 +137,7 @@ export const Register = () => {
       </div>
 
       <div className="register-button">
-        <Button type="submit" label="Signup" />
+        <AuthButton type="submit" label="Signup" />
       </div>
     </form>
   );

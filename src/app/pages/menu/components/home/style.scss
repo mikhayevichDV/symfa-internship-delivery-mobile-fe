@@ -1,0 +1,15 @@
+@import 'src/styles/theme/index.scss';
+
+.home {
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &-title {
+      font-size: 24px;
+      text-align: left;
+      color: $header-font-color;
+      width: 40vw;
+    }
+  }
+}

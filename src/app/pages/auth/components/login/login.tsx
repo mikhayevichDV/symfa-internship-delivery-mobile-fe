@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Button, PasswordInput, TextInput } from '@components/ui-kit';
+import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
 import { useAppDispatch, useAppSelector } from '@core/hooks';
 import {
   setToken,
@@ -104,7 +104,7 @@ export const Login = () => {
           </div>
 
           <div className="login-button">
-            <Button type="submit" label="Login" />
+            <AuthButton type="submit" label="Login" />
           </div>
         </form>
       )}
