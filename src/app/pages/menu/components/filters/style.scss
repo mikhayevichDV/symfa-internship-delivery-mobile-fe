@@ -1,21 +1,97 @@
 @import 'src/styles/theme/index.scss';
 
 .filters {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  &-btn {
+  &-controller {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $items-background-color;
-    border: 0;
-    border-radius:  50%;
-    width: 5vh;
-    height: 5vh;
 
-    &-active {
-      background-color: $main-button-background-color;
+    form {
+      display: flex;
+      align-items: center;
+      width: auto;
+      float: right;
+      margin-right: 30px;
+      height: 5vh;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 10vw;
+        background-color: $items-background-color;
+        border: 0;
+        border-radius: 42px 0 0 42px;
+
+        img {
+          height: 3vh;
+          width: 5vw;
+        }
+      }
+
+      input {
+        position: relative;
+        width: 55vw;
+        height: 100%;
+        padding-left: 15px;
+        border-radius:  0 42px 42px 0;
+        border: 0;
+        background: $items-background-color;
+        outline: none;
+      }
+    }
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $items-background-color;
+      border: 0;
+      border-radius: 50%;
+      width: 5vh;
+      height: 5vh;
+
+      &-active {
+        background-color: $main-button-background-color;
+      }
+    }
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 7vh;
+    margin: 2vh 0 2vh 3vw;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    &-wrapper {
+      display: none;
+
+      &-active {
+        display: flex;
+        gap: 2vw;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 25vw;
+        border: 0;
+        border-radius: 20px;
+        box-shadow: 4px 4px 13px -7px rgba(34, 60, 80, 0.2);
+        font-weight: 400;
+        line-height: 28px;
+        color: $main-font-color;
+        background-color: $items-background-color;
+      }
     }
   }
 }

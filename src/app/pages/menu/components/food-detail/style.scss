@@ -1,0 +1,41 @@
+@import 'src/styles/theme/index.scss';
+
+.food-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5vh;
+
+  &-img-container {
+    position: relative;
+    right: 0;
+    top: 0;
+    height: 40vh;
+    width: 90vw;
+
+    &-dish {
+      height: 100%;
+      width: 100%;
+      border-radius: 0 0 0 15%;
+    }
+
+    &-favorite {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      width: 6vh;
+      height: 6vh;
+      border-radius: 40% 0 0 0;
+      opacity: 0.9;
+      background-color: $main-button-background-color;
+    }
+  }
+
+  &-description {
+    height: 55vh;
+    width: 90vw;
+    border-radius: 15% 0 0 0;
+    background-color: $items-background-color;
+  }
+}

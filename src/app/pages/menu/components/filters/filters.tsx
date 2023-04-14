@@ -4,26 +4,46 @@ import SearchIcon from 'assets/images/icons/search.svg';
 
 import './style.scss';
 
-export const Filters = () => {
-  const [isFilterActive, setFilterActive] = useState<boolean>(false);
+export const Filters = ({ types }: any) => {
+  const [isFilterContainerVisible, setFilterContainerVisible] =
+    useState<boolean>(false);
 
   return (
     <div className="filters">
-      <form>
-        <button type="submit">
-          <img src={SearchIcon} alt="search" />
+      <div className="filters-controller">
+        <form>
+          <button type="submit">
+            <img src={SearchIcon} alt="search" />
+          </button>
+          <input type="text" placeholder="Search food..." />
+        </form>
+        <button
+          className={
+            isFilterContainerVisible
+              ? 'filters-controller-btn filters-controller-btn-active'
+              : 'filters-controller-btn'
+          }
+          onClick={() => setFilterContainerVisible(!isFilterContainerVisible)}
+          type="button"
+        >
+          <img src={FilterIcon} alt="filter" />
         </button>
-        <input type="text" placeholder="Search..." />
-      </form>
-      <button
-        className={
-          isFilterActive ? 'filters-btn filters-btn-active' : 'filters-btn'
-        }
-        onClick={() => setFilterActive(!isFilterActive)}
-        type="button"
-      >
-        <img src={FilterIcon} alt="filter" />
-      </button>
+      </div>
+      <div className="filters-container">
+        <div
+          className={
+            isFilterContainerVisible
+              ? 'filters-container-wrapper-active'
+              : 'filters-container-wrapper'
+          }
+        >
+          {types?.map((item: any) => (
+            <button className="filters-container-wrapper-item" type="button">
+              {item}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

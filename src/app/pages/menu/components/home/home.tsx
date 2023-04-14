@@ -1,22 +1,20 @@
 import React from 'react';
-import { ProductsContainer } from '@pages/menu/components/products-container';
+import { typesRefactor } from '@core/utils';
 import { useGetProductsQuery, useGetTypesQuery } from '@store/products';
 import { Filters } from '../filters';
 import { Header } from '../header';
+import { ProductsContainer } from '../products-container';
 
 import './style.scss';
 
 export const Home: React.FC = () => {
-  const { data: types } = useGetTypesQuery({});
   const { data: products } = useGetProductsQuery({});
-
-  console.log(products);
-  console.log(types);
+  const { data: types } = useGetTypesQuery({});
 
   return (
     <div className="home">
       <Header title="Quality food" />
-      <Filters />
+      <Filters types={typesRefactor(types)} />
       <ProductsContainer products={products} />
     </div>
   );

@@ -5,6 +5,7 @@ import { ClientLayout } from '@layouts/client-layout';
 import { Login, Register } from '@pages/auth/components';
 import {
   Favorite,
+  FoodDetail,
   Home,
   Notifications,
   Order,
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: 'notifications', element: <Notifications /> },
       { path: 'profile', element: <Profile /> },
       { path: 'order', element: <Order /> },
+      { path: 'food-detail/:title', element: <FoodDetail /> },
     ],
   },
   {

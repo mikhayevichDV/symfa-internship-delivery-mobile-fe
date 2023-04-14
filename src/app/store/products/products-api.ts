@@ -11,7 +11,7 @@ export const productsApi = createApi({
         params,
       }),
     }),
-    getProductsByTitle: builder.query({
+    getProductByTitle: builder.query({
       query: params => ({
         url: `products/title/${params}`,
         params,
@@ -50,7 +50,7 @@ export const productsApi = createApi({
 
 export const {
   useGetProductsQuery,
-  useGetProductsByTitleQuery,
+  useGetProductByTitleQuery,
   useGetTypesQuery,
   useGetFlavourTypesQuery,
   useGetProductsByTypeQuery,
