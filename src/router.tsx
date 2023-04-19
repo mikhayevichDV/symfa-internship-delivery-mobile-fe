@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { AuthLayout } from '@layouts/auth-layout';
 import { ClientLayout } from '@layouts/client-layout';
-import { Login, Register } from '@pages/auth/components';
+import { Login, RecoverPassword, Register } from '@pages/auth/components';
 import {
   Favorite,
   FoodDetail,
@@ -11,14 +11,8 @@ import {
   Order,
   Profile,
 } from '@pages/menu/components';
-import { MainLayout } from './app/layouts';
 
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainLayout />,
-    children: [],
-  },
   {
     path: '/client',
     element: <ClientLayout />,
@@ -29,14 +23,16 @@ export const router = createBrowserRouter([
       { path: 'profile', element: <Profile /> },
       { path: 'order', element: <Order /> },
       { path: 'food-detail/:title', element: <FoodDetail /> },
+      { path: 'favorite/food-detail/:title', element: <FoodDetail /> },
     ],
   },
   {
-    path: '/auth',
+    path: '/',
     element: <AuthLayout />,
     children: [
       { index: true, element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'recover', element: <RecoverPassword /> },
     ],
   },
 ]);

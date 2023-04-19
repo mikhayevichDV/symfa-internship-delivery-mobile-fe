@@ -31,6 +31,15 @@ export const authApi = createApi({
         };
       },
     }),
+    recoverPassword: builder.mutation({
+      query(data) {
+        return {
+          url: `auth/recover`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
+    }),
     getCurrentUser: builder.query({
       query: () => {
         return {
@@ -46,5 +55,6 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useLoginUserMutation,
+  useRecoverPasswordMutation,
   useGetCurrentUserQuery,
 } = authApi;

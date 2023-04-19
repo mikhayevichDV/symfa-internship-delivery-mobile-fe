@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import FavoriteIcon from 'assets/images/icons/favorite.svg';
 import RatingIcon from 'assets/images/icons/start.svg';
+import DeliveryTimeIcon from 'assets/images/icons/time.svg';
 import { config } from '@core/config';
 import { useGetProductByTitleQuery } from '@store/products';
 
@@ -29,8 +30,8 @@ export const FoodDetail: React.FC = () => {
         </button>
       </div>
       <div className="food-detail-description">
-        <div>
-          <div>
+        <div className="food-detail-description-header">
+          <div className="food-detail-description-header-title">
             <span>{product.title}</span>
             <span>
               {product.flavourType} {product.title}
@@ -40,11 +41,19 @@ export const FoodDetail: React.FC = () => {
             <span>$</span> <span>{product.price}</span>
           </div>
         </div>
-        <div>
-          <div>
+        <div className="food-detail-description-info">
+          <div className="food-detail-description-info-rating">
             <img src={RatingIcon} alt="rating" />
             <span>{product.rating}</span>
           </div>
+          <div className="food-detail-description-info-time">
+            <img src={DeliveryTimeIcon} alt="delivery time" />
+            <span>{product.deliveryTime} min</span>
+          </div>
+        </div>
+        <div className="food-detail-description-about">
+          <span>About</span>
+          <p>{product.description}</p>
         </div>
       </div>
     </div>

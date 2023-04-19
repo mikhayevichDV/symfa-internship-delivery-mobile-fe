@@ -1,0 +1,51 @@
+@import 'src/styles/theme/index.scss';
+
+.order {
+  &-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &-title {
+      color: $main-font-color;
+    }
+
+    &-close-btn {
+      width: 10%;
+      height: 10%;
+      background-color: transparent;
+      border: 0;
+
+      &-btn {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      width: 90vw;
+      background-color: $items-background-color;
+
+      &-img {
+        width: 10vh;
+        height: 10vh;
+      }
+    }
+  }
+
+  &-promo-code {
+    img {
+      width: 3vh;
+      height: 4vh;
+    }
+  }
+}

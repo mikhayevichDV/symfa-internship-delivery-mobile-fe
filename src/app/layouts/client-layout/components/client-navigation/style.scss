@@ -1,13 +1,16 @@
 .navigation {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 
-    &-bar {
-      position: sticky;
-      bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      margin: 10px;
-      .active {
+  &-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
 
-      }
+    .active {
+
     }
+  }
 }

@@ -5,19 +5,17 @@ import './style.scss';
 
 interface INavigationItemProps {
   to: string;
-  img?: string;
   label?: string;
 }
 
 // TODO type
-export const NavigationItem: any = ({
-  img,
+export const AuthNavigationItem: any = ({
   to,
   label,
 }: INavigationItemProps) => {
   return (
     <NavLink to={to}>
-      {img ? <img className="nav-img" src={img} alt="icon" /> : <p>{label}</p>}
+      <p>{label}</p>
     </NavLink>
   );
 };

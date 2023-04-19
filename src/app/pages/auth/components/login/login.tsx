@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
 import { useAppDispatch, useAppSelector } from '@core/hooks';
 import {
@@ -64,7 +64,7 @@ export const Login = () => {
   }, [isSuccess]);
 
   return (
-    <>
+    <div>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
@@ -106,8 +106,11 @@ export const Login = () => {
           <div className="login-button">
             <AuthButton type="submit" label="Login" />
           </div>
+          <div>
+            <Link to="recover">Forgot password?</Link>
+          </div>
         </form>
       )}
-    </>
+    </div>
   );
 };

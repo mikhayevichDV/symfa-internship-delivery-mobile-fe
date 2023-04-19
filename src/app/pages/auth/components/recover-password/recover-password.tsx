@@ -2,12 +2,12 @@ import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
-import { useCreateUserMutation } from '@store/user';
+import { useRecoverPasswordMutation } from '@store/user';
 
 import './style.scss';
 
-export const Register = () => {
-  const [createdUser] = useCreateUserMutation();
+export const RecoverPassword = () => {
+  const [recover] = useRecoverPasswordMutation();
   const {
     register,
     handleSubmit,
@@ -16,26 +16,17 @@ export const Register = () => {
     mode: 'onBlur',
     defaultValues: {
       email: '',
-      username: '',
       password: '',
       confirmPassword: '',
     },
   });
   const [email, setEmail] = useState<string>('');
-  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
   const onEmailChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(event.target.value);
-    },
-    [],
-  );
-
-  const onUsernameChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setUsername(event.target.value);
     },
     [],
   );
@@ -48,36 +39,13 @@ export const Register = () => {
   );
 
   const onFinish = async () => {
-    await createdUser({ username, email, password });
-    navigate('/auth');
+    await recover({ email, password });
+    navigate('/');
   };
 
   return (
     <form className="register" onSubmit={handleSubmit(onFinish)}>
       <div className="register-inputs">
-        <TextInput
-          validation={{
-            ...register('username', {
-              minLength: {
-                value: 4,
-                message: 'Min length is 4',
-              },
-              maxLength: {
-                value: 12,
-                message: 'Max length is 12',
-              },
-            }),
-          }}
-          onChange={onUsernameChange}
-          type="text"
-          label="Username"
-          id="username"
-        />
-        {errors?.username?.message && (
-          <div className="register-inputs-error_container">
-            {errors?.username?.message}
-          </div>
-        )}
         <TextInput
           validation={{
             ...register('email', {
@@ -108,7 +76,7 @@ export const Register = () => {
             }),
           }}
           onChange={onPasswordChange}
-          label="Password"
+          label="New password"
           id="password"
         />
         {errors?.password?.message && (
@@ -135,7 +103,7 @@ export const Register = () => {
       </div>
 
       <div className="register-button">
-        <AuthButton type="submit" label="Signup" />
+        <AuthButton type="submit" label="Recover" />
       </div>
     </form>
   );

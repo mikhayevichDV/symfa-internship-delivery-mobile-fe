@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { BASE_QUERY } from '../models';
 
 export const productsApi = createApi({
-  reducerPath: 'products',
+  reducerPath: 'productsApi',
   baseQuery: BASE_QUERY,
   endpoints: builder => ({
     getProducts: builder.query({
@@ -45,6 +45,21 @@ export const productsApi = createApi({
         params,
       }),
     }),
+    getFavoriteProducts: builder.query({
+      query: params => ({
+        url: `favorite-products/get/${params}`,
+        params,
+      }),
+    }),
+    addFavoriteProduct: builder.mutation({
+      query(data) {
+        return {
+          url: 'products/addFavoriteProduct',
+          method: 'POST',
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -55,4 +70,6 @@ export const {
   useGetFlavourTypesQuery,
   useGetProductsByTypeQuery,
   useGetProductsByFlavourTypeQuery,
+  useGetFavoriteProductsQuery,
+  useAddFavoriteProductMutation,
 } = productsApi;

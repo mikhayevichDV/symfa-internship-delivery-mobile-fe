@@ -17,6 +17,7 @@
       height: 100%;
       width: 100%;
       border-radius: 0 0 0 15%;
+      box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
     }
 
     &-favorite {
@@ -33,9 +34,41 @@
   }
 
   &-description {
+    display: flex;
+    flex-direction: column;
     height: 55vh;
     width: 90vw;
     border-radius: 15% 0 0 0;
+    box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
     background-color: $items-background-color;
+
+    &-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      &-title {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &-info {
+      display: flex;
+
+      img {
+        width: 3vh;
+        height: 3vh;
+      }
+      &-rating {
+        display: flex;
+        align-items: center;
+      }
+
+      &-time {
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 }

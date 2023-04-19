@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ProductCard } from '@components/ui-kit';
 import { config } from '@core/config';
 
@@ -10,15 +10,17 @@ export const ProductsContainer = ({ products }: any) => {
     <div className="product-container">
       {products?.map((item: any) => {
         return (
-          <NavLink key={item.id} to={`food-detail/${item.title}`}>
+          <Link key={item.id} to={`food-detail/${item.title}`}>
             <ProductCard
+              id={item.id}
+              item={item}
               key={item.id}
               title={item.title}
               flavourType={item.flavourType}
               price={item.price}
               photo={`${config.API_URL}/${item.photo.photoPath}`}
             />
-          </NavLink>
+          </Link>
         );
       })}
     </div>

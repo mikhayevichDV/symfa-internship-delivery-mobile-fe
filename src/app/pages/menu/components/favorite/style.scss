@@ -1,1 +1,9 @@
 @import 'src/styles/theme/index.scss';
+
+.favorite {
+
+  &-ad-container {
+    display: flex;
+    justify-content: center;
+  }
+}

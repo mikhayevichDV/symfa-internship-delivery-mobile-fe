@@ -1,1 +1,2 @@
-export * from './navigation-item';
+export * from './menu-navigation-item';
+export * from './auth-navigation-item';

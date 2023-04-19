@@ -1,10 +1,10 @@
 import React from 'react';
 import Logo from 'assets/images/logo.jpg';
-import { NavigationItem } from '@components/ui-kit/navigation-item';
+import { AuthNavigationItem } from '@components/ui-kit';
 
 import './style.scss';
 
-export const AuthNavigation: any = () => {
+export const AuthNavigation = () => {
   return (
     <div className="auth-header">
       <div>
@@ -19,8 +19,16 @@ export const AuthNavigation: any = () => {
       <p className="auth-header-description">Delivery App</p>
 
       <nav className="auth-header-navbar">
-        <NavigationItem to="" label="Login" />
-        <NavigationItem to="register" label="Signup" />
+        <AuthNavigationItem
+          className="auth-header-navbar-item"
+          to=""
+          label="Login"
+        />
+        <AuthNavigationItem
+          className="auth-header-navbar-item"
+          to="register"
+          label="Signup"
+        />
       </nav>
     </div>
   );

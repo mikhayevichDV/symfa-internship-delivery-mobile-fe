@@ -1,21 +1,33 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import FavoriteIcon from 'assets/images/icons/favorite.svg';
+import { useAppSelector } from '@core/hooks';
+import { useAddToOrderMutation } from '@store/order';
 
 import './style.scss';
 
 export interface IProductCardProps {
+  id: string;
   title: string;
   flavourType: string;
   price: number;
   photo: string;
+  item: any;
 }
 
 export const ProductCard: FC<IProductCardProps> = ({
+  id,
   title,
   flavourType,
   price,
   photo,
 }) => {
+  const userId = useAppSelector(state => state?.user?.user?.id);
+  const [addToCart] = useAddToOrderMutation();
+  const addToOrder = async (e: MouseEvent<HTMLButtonElement>): Promise<any> => {
+    e.preventDefault();
+    await addToCart({ id: userId, data: { id } });
+  };
+
   return (
     <div className="product-card">
       <div className="product-card-img">
@@ -32,7 +44,7 @@ export const ProductCard: FC<IProductCardProps> = ({
         <span className="product-card-price-currency">$</span>
         <span className="product-card-price-count">{price}</span>
       </div>
-      <button className="product-card-btn" type="button">
+      <button onClick={addToOrder} className="product-card-btn" type="button">
         <span className="product-card-btn-label">Add to Cart</span>
       </button>
     </div>

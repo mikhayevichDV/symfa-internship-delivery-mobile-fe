@@ -1,5 +1,9 @@
 @import 'src/styles/theme/index.scss';
 
+* {
+  margin: 0;
+}
+
 .auth-header {
   position: relative;
   display: flex;
@@ -32,7 +36,12 @@
   &-navbar {
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 100%;
     bottom: 0;
+
+    &-item {
+      
+    }
   }
 }
