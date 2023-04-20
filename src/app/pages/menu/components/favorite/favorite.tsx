@@ -1,7 +1,7 @@
 import React from 'react';
 import { FavoriteAd } from '@components/ui-kit';
-import { useAppSelector } from '@core/hooks';
 import { typesRefactor } from '@core/utils';
+import { guard } from '@core/utils/HOC';
 import { Filters } from '@pages/menu/components/filters';
 import { Header } from '@pages/menu/components/header';
 import { ProductsContainer } from '@pages/menu/components/products-container';
@@ -12,10 +12,9 @@ import {
 
 import './style.scss';
 
-export const Favorite: React.FC = () => {
+const FavoriteComponent: React.FC = () => {
   const { data: flavourTypes } = useGetFlavourTypesQuery({});
-  const userId = useAppSelector(state => state?.user?.user?.id);
-  const { data: favoriteProducts } = useGetFavoriteProductsQuery(userId);
+  const { data: favoriteProducts } = useGetFavoriteProductsQuery({});
 
   return (
     <div className="favorite">
@@ -32,3 +31,5 @@ export const Favorite: React.FC = () => {
     </div>
   );
 };
+
+export const Favorite = guard(FavoriteComponent);

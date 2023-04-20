@@ -6,21 +6,19 @@ export const orderApi = createApi({
   baseQuery: BASE_QUERY,
   endpoints: builder => ({
     getOrder: builder.query({
-      query: params => ({
-        url: `order/get/${params}`,
-        params,
+      query: () => ({
+        url: `order/get`,
       }),
     }),
     getTotal: builder.query({
-      query: params => ({
-        url: `order/total/get/${params}`,
-        params,
+      query: () => ({
+        url: `order/total/get`,
       }),
     }),
     addToOrder: builder.mutation({
-      query({ id, data }) {
+      query({ data }) {
         return {
-          url: `order/add/${id}`,
+          url: `order/add`,
           method: 'POST',
           body: data,
         };

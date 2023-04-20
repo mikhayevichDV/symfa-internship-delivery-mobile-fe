@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from '@core/hooks';
 import { typesRefactor } from '@core/utils';
+import { guard } from '@core/utils/HOC';
 import { useGetProductsQuery, useGetTypesQuery } from '@store/products';
 import { setProducts } from '@store/products/products-slice';
 import { Filters } from '../filters';
@@ -9,7 +10,7 @@ import { ProductsContainer } from '../products-container';
 
 import './style.scss';
 
-export const Home: React.FC = () => {
+const HomeComponent: React.FC = () => {
   const { data: products } = useGetProductsQuery({});
   const { data: types } = useGetTypesQuery({});
 
@@ -25,3 +26,5 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+
+export const Home = guard(HomeComponent);

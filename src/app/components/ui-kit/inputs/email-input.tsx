@@ -8,7 +8,7 @@ interface ITextInputProps {
   label: string;
   type: string;
   onChange: any;
-  validation: UseFormRegisterReturn<'email' | 'username'>;
+  validation: UseFormRegisterReturn<'email' | 'username' | 'address'>;
 }
 
 export const TextInput = ({

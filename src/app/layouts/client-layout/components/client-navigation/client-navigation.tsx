@@ -12,7 +12,7 @@ export const ClientNavigation: React.FC = () => {
   return (
     <div className="navigation">
       <nav className="navigation-bar">
-        <MenuNavigationItem to="" Img={HomeIcon} />
+        <MenuNavigationItem to="home" Img={HomeIcon} />
         <MenuNavigationItem to="favorite" Img={FavoriteIcon} />
         <MenuNavigationItem to="order" Img={OrderIcon} />
         <MenuNavigationItem to="notifications" Img={NotificationsIcon} />

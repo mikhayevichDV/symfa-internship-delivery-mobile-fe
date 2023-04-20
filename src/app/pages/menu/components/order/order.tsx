@@ -4,48 +4,47 @@ import CloseBtn from 'assets/images/icons/close.svg';
 import PromocodeIcon from 'assets/images/icons/promo_code.svg';
 import { config } from '@core/config';
 import { useAppSelector } from '@core/hooks';
+import { guard } from '@core/utils/HOC';
+import { useCreateHistoryMutation } from '@store/history';
 import {
   useDecrementCountMutation,
   useGetOrderQuery,
   useGetTotalQuery,
   useIncrementCountMutation,
 } from '@store/order';
-import { useGetPromocodesQuery } from '@store/promo-codes';
+import { useGetPromocodeQuery } from '@store/promo-codes';
 
 import './style.scss';
 
-export const Order: React.FC = () => {
-  const [promocode, setPromocode] = useState<string>('');
+const OrderComponent: React.FC = () => {
+  const [promocodeValue, setPromocodeValue] = useState<string>('');
+  const [total, setTotal] = useState<number>(0);
   const navigate = useNavigate();
-  const userId = useAppSelector(state => state?.user?.user?.id);
+  const userAddress = useAppSelector(state => state?.user?.user?.address);
 
   const [increment] = useIncrementCountMutation();
   const [decrement] = useDecrementCountMutation();
-  const { data: order } = useGetOrderQuery(userId);
-  const { data: total } = useGetTotalQuery(userId);
-  const { data: promocodes } = useGetPromocodesQuery({});
+  const [confirmOrder] = useCreateHistoryMutation();
+  const { data: order } = useGetOrderQuery({});
+  const { data: subtotal } = useGetTotalQuery({});
+  const { data: discount } = useGetPromocodeQuery(promocodeValue);
 
   const onPromocodeChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPromocode(event.target.value);
+      setPromocodeValue(event.target.value);
     },
     [],
   );
 
-  const subtotal = () => {
-    if (!promocodes) {
-      return 0;
-    }
+  const usePromocode = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    for (const key in promocodes) {
-      if (key === promocode) {
-        console.log(1);
-      }
-    }
+    setTotal(subtotal - (subtotal / 100) * discount);
   };
 
-  console.log(promocodes, promocode);
-  console.log(subtotal());
+  const onConfirm = async (): Promise<any> => {
+    await confirmOrder({ data: { userAddress } });
+  };
 
   return (
     <div className="order">
@@ -106,15 +105,19 @@ export const Order: React.FC = () => {
           );
         })}
       </div>
-      <div className="order-promo-code">
+      <form className="order-promo-code" onSubmit={usePromocode}>
         <img src={PromocodeIcon} alt="promo-code" />
-        <input type="text" onChange={onPromocodeChange} />
-        <button type="button">Apply</button>
-      </div>
+        <input
+          type="text"
+          value={promocodeValue}
+          onChange={onPromocodeChange}
+        />
+        <button type="submit">Apply</button>
+      </form>
       <div className="order-total">
         <div>
           <span>Subtotal</span>
-          <span>{total}</span>
+          <span>{subtotal}</span>
         </div>
         <div>
           <span>Delivery</span>
@@ -122,9 +125,15 @@ export const Order: React.FC = () => {
         </div>
         <div>
           <span>Total</span>
-          <span>{total}</span>
+          <span>{total.toFixed(2)}</span>
         </div>
       </div>
+      <button onClick={onConfirm} type="button">
+        {' '}
+        Confirm order{' '}
+      </button>
     </div>
   );
 };
+
+export const Order = guard(OrderComponent);

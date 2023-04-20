@@ -4,11 +4,12 @@ import FavoriteIcon from 'assets/images/icons/favorite.svg';
 import RatingIcon from 'assets/images/icons/start.svg';
 import DeliveryTimeIcon from 'assets/images/icons/time.svg';
 import { config } from '@core/config';
+import { guard } from '@core/utils/HOC';
 import { useGetProductByTitleQuery } from '@store/products';
 
 import './style.scss';
 
-export const FoodDetail: React.FC = () => {
+const FoodDetailComponent: React.FC = () => {
   const params = useParams();
 
   const { data: product, isLoading } = useGetProductByTitleQuery(params.title);
@@ -59,3 +60,5 @@ export const FoodDetail: React.FC = () => {
     </div>
   );
 };
+
+export const FoodDetail = guard(FoodDetailComponent);

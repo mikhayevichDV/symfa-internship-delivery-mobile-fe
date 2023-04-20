@@ -46,9 +46,8 @@ export const productsApi = createApi({
       }),
     }),
     getFavoriteProducts: builder.query({
-      query: params => ({
-        url: `favorite-products/get/${params}`,
-        params,
+      query: () => ({
+        url: `favorite-products/get`,
       }),
     }),
     addFavoriteProduct: builder.mutation({

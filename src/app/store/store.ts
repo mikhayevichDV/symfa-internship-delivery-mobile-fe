@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { orderApi } from '@store/order';
+import { historyApi } from './history';
+import { orderApi } from './order';
 import { productsApi, productsReducer } from './products';
 import { promoCodesApi } from './promo-codes';
 import { authApi, userReducer } from './user';
@@ -19,6 +20,7 @@ export const store = configureStore({
     [productsApi.reducerPath]: productsApi.reducer,
     [promoCodesApi.reducerPath]: promoCodesApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
+    [historyApi.reducerPath]: historyApi.reducer,
     user: persistedReducer,
     product: productsReducer,
   },
@@ -28,6 +30,7 @@ export const store = configureStore({
     productsApi.middleware,
     orderApi.middleware,
     promoCodesApi.middleware,
+    historyApi.middleware,
   ],
 });
 

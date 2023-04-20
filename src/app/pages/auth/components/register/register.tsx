@@ -11,18 +11,20 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors: FormErrors },
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
       email: '',
       username: '',
+      address: '',
       password: '',
       confirmPassword: '',
     },
   });
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
@@ -40,6 +42,13 @@ export const Register = () => {
     [],
   );
 
+  const onAddressChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setAddress(event.target.value);
+    },
+    [],
+  );
+
   const onPasswordChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
@@ -48,7 +57,7 @@ export const Register = () => {
   );
 
   const onFinish = async () => {
-    await createdUser({ username, email, password });
+    await createdUser({ username, email, address, password });
     navigate('/auth');
   };
 
@@ -73,9 +82,9 @@ export const Register = () => {
           label="Username"
           id="username"
         />
-        {errors?.username?.message && (
+        {FormErrors?.username?.message && (
           <div className="register-inputs-error_container">
-            {errors?.username?.message}
+            {FormErrors?.username?.message}
           </div>
         )}
         <TextInput
@@ -92,9 +101,29 @@ export const Register = () => {
           type="text"
           id="email-address"
         />
-        {errors?.email?.message && (
+        {FormErrors?.email?.message && (
           <div className="register-inputs-error_container">
-            {errors?.email?.message}
+            {FormErrors?.email?.message}
+          </div>
+        )}
+
+        <TextInput
+          validation={{
+            ...register('address', {
+              minLength: {
+                value: 4,
+                message: 'Min length is 4',
+              },
+            }),
+          }}
+          onChange={onAddressChange}
+          type="text"
+          label="Address"
+          id="address"
+        />
+        {FormErrors?.address?.message && (
+          <div className="register-inputs-error_container">
+            {FormErrors?.address?.message}
           </div>
         )}
         <PasswordInput
@@ -111,9 +140,9 @@ export const Register = () => {
           label="Password"
           id="password"
         />
-        {errors?.password?.message && (
+        {FormErrors?.password?.message && (
           <div className="register-inputs-error_container">
-            {errors?.password?.message}
+            {FormErrors?.password?.message}
           </div>
         )}
         <PasswordInput
@@ -127,9 +156,9 @@ export const Register = () => {
           label="Confirm password"
           id="confirm-password"
         />
-        {errors?.confirmPassword?.message && (
+        {FormErrors?.confirmPassword?.message && (
           <div className="register-inputs-error_container">
-            {errors?.confirmPassword?.message}
+            {FormErrors?.confirmPassword?.message}
           </div>
         )}
       </div>

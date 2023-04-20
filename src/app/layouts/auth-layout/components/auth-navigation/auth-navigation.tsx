@@ -21,7 +21,7 @@ export const AuthNavigation = () => {
       <nav className="auth-header-navbar">
         <AuthNavigationItem
           className="auth-header-navbar-item"
-          to=""
+          to="/auth"
           label="Login"
         />
         <AuthNavigationItem

@@ -1,7 +1,10 @@
 import React from 'react';
+import { guard } from '@core/utils/HOC';
 
 import './style.scss';
 
-export const Notifications: React.FC = () => {
+const NotificationsComponent: any = () => {
   return <div>Notifications</div>;
 };
+
+export const Notifications = guard(NotificationsComponent);

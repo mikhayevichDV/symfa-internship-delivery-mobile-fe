@@ -1,7 +1,10 @@
 import React from 'react';
+import { guard } from '@core/utils/HOC';
 
 import './style.scss';
 
-export const Profile: React.FC = () => {
+const ProfileComponent: React.FC = () => {
   return <div>Profile</div>;
 };
+
+export const Profile = guard(ProfileComponent);

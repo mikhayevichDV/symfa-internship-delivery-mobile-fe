@@ -13,7 +13,13 @@ export const promoCodesApi = createApi({
         };
       },
     }),
+    getPromocode: builder.query({
+      query: params => ({
+        url: `promo-codes/code/${params}`,
+        params,
+      }),
+    }),
   }),
 });
 
-export const { useGetPromocodesQuery } = promoCodesApi;
+export const { useGetPromocodesQuery, useGetPromocodeQuery } = promoCodesApi;
