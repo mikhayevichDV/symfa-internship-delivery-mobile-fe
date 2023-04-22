@@ -5,14 +5,22 @@ import RatingIcon from 'assets/images/icons/start.svg';
 import DeliveryTimeIcon from 'assets/images/icons/time.svg';
 import { config } from '@core/config';
 import { guard } from '@core/utils/HOC';
-import { useGetProductByTitleQuery } from '@store/products';
+import { useAddToOrderMutation } from '@store/order';
+import { useGetProductsQuery } from '@store/products';
 
 import './style.scss';
 
 const FoodDetailComponent: React.FC = () => {
   const params = useParams();
 
-  const { data: product, isLoading } = useGetProductByTitleQuery(params.title);
+  const { data: product, isLoading } = useGetProductsQuery({
+    title: params.title,
+  });
+
+  const [addToCart] = useAddToOrderMutation();
+  const addToOrder = async (id: string): Promise<any> => {
+    await addToCart({ data: { id } });
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -33,28 +41,42 @@ const FoodDetailComponent: React.FC = () => {
       <div className="food-detail-description">
         <div className="food-detail-description-header">
           <div className="food-detail-description-header-title">
-            <span>{product.title}</span>
-            <span>
-              {product.flavourType} {product.title}
+            <span className="food-detail-description-header-title-name">
+              {product.title}
+            </span>
+            <span className="food-detail-description-header-title-type">
+              {product.flavourType} {product.title.toLowerCase()}
             </span>
           </div>
-          <div>
-            <span>$</span> <span>{product.price}</span>
+          <div className="food-detail-description-header-price">
+            <span className="food-detail-description-header-price-usd">$</span>
+            <span className="food-detail-description-header-price-amount">
+              {product.price}
+            </span>
           </div>
         </div>
         <div className="food-detail-description-info">
           <div className="food-detail-description-info-rating">
-            <img src={RatingIcon} alt="rating" />
+            <div className="food-detail-description-info-rating-img">
+              <img src={RatingIcon} alt="rating" />
+            </div>
             <span>{product.rating}</span>
           </div>
           <div className="food-detail-description-info-time">
-            <img src={DeliveryTimeIcon} alt="delivery time" />
+            <div className="food-detail-description-info-time-img">
+              <img src={DeliveryTimeIcon} alt="delivery time" />
+            </div>
             <span>{product.deliveryTime} min</span>
           </div>
         </div>
         <div className="food-detail-description-about">
           <span>About</span>
           <p>{product.description}</p>
+        </div>
+        <div className="food-detail-description-btn">
+          <button onClick={() => addToOrder(product.id)} type="button">
+            ADD TO CART
+          </button>
         </div>
       </div>
     </div>

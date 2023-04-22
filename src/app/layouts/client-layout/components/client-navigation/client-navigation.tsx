@@ -16,7 +16,7 @@ export const ClientNavigation: React.FC = () => {
         <MenuNavigationItem to="favorite" Img={FavoriteIcon} />
         <MenuNavigationItem to="order" Img={OrderIcon} />
         <MenuNavigationItem to="notifications" Img={NotificationsIcon} />
-        <MenuNavigationItem to="profile" Img={ProfileIcon} />
+        <MenuNavigationItem to="profile/payment" Img={ProfileIcon} />
       </nav>
     </div>
   );

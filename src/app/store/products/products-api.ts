@@ -33,18 +33,6 @@ export const productsApi = createApi({
         };
       },
     }),
-    getProductsByType: builder.query({
-      query: params => ({
-        url: `products/type/${params}`,
-        params,
-      }),
-    }),
-    getProductsByFlavourType: builder.query({
-      query: params => ({
-        url: `products/flavourType /${params}`,
-        params,
-      }),
-    }),
     getFavoriteProducts: builder.query({
       query: () => ({
         url: `favorite-products/get`,
@@ -59,6 +47,12 @@ export const productsApi = createApi({
         };
       },
     }),
+    getFavoriteProductsByFlavourType: builder.query({
+      query: params => ({
+        url: `avorite-products/get/flavourType/${params}`,
+        params,
+      }),
+    }),
   }),
 });
 
@@ -67,8 +61,7 @@ export const {
   useGetProductByTitleQuery,
   useGetTypesQuery,
   useGetFlavourTypesQuery,
-  useGetProductsByTypeQuery,
-  useGetProductsByFlavourTypeQuery,
   useGetFavoriteProductsQuery,
   useAddFavoriteProductMutation,
+  useGetFavoriteProductsByFlavourTypeQuery,
 } = productsApi;

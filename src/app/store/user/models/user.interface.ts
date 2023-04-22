@@ -1,8 +1,8 @@
 export interface IUserRequest {
   id: string;
-  name: string;
-  surname: string;
+  username: string;
   email: string;
+  userId: string;
   address: string;
   avatar: IAvatar;
 }

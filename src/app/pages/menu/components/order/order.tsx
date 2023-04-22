@@ -18,6 +18,7 @@ import './style.scss';
 
 const OrderComponent: React.FC = () => {
   const [promocodeValue, setPromocodeValue] = useState<string>('');
+  const [discountValue, setDiscountValue] = useState<string>('');
   const [total, setTotal] = useState<number>(0);
   const navigate = useNavigate();
   const userAddress = useAppSelector(state => state?.user?.user?.address);
@@ -27,7 +28,7 @@ const OrderComponent: React.FC = () => {
   const [confirmOrder] = useCreateHistoryMutation();
   const { data: order } = useGetOrderQuery({});
   const { data: subtotal } = useGetTotalQuery({});
-  const { data: discount } = useGetPromocodeQuery(promocodeValue);
+  const { data: discount } = useGetPromocodeQuery(discountValue);
 
   const onPromocodeChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,12 +39,13 @@ const OrderComponent: React.FC = () => {
 
   const usePromocode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDiscountValue(promocodeValue);
 
     setTotal(subtotal - (subtotal / 100) * discount);
   };
 
-  const onConfirm = async (): Promise<any> => {
-    await confirmOrder({ data: { userAddress } });
+  const onConfirm = async () => {
+    await confirmOrder({ address: userAddress });
   };
 
   return (
@@ -72,28 +74,34 @@ const OrderComponent: React.FC = () => {
                 alt="dish"
                 loading="lazy"
               />
-              <div className="order-content-item-">
-                <div>
-                  <span>{elem.title}</span>
+              <div className="order-content-item-info">
+                <div className="order-content-item-info-title">
+                  <span className="order-content-item-bold">{elem.title}</span>
                   <span>
-                    {elem.flavourType} {elem.title}
+                    {elem.flavourType} {elem.title.toLowerCase()}
                   </span>
                 </div>
-                <div>
+                <div className="order-content-item-info-price">
                   <p>
-                    <span>$</span>{' '}
-                    <span>{(elem.price * elem.count).toFixed(2)}</span>
+                    <span className="order-content-item-usd">$</span>
+                    <span className="order-content-item-bold">
+                      {(elem.price * elem.count).toFixed(2)}
+                    </span>
                   </p>
-                  <div>
+                  <div className="order-content-item-info-price-count">
                     <button
                       type="button"
+                      className="order-content-item-info-price-count-btn"
                       onClick={() => decrement({ id: elem.orderId })}
                     >
                       -
                     </button>
-                    <span>{elem.count}</span>
+                    <span className="order-content-item-bold">
+                      {elem.count}
+                    </span>
                     <button
                       type="button"
+                      className="order-content-item-info-price-count-btn"
                       onClick={() => increment({ id: elem.orderId })}
                     >
                       +
@@ -109,28 +117,30 @@ const OrderComponent: React.FC = () => {
         <img src={PromocodeIcon} alt="promo-code" />
         <input
           type="text"
+          placeholder="Promo code..."
           value={promocodeValue}
           onChange={onPromocodeChange}
         />
         <button type="submit">Apply</button>
       </form>
-      <div className="order-total">
-        <div>
+      <div className="order-bill">
+        <div className="order-bill-item">
           <span>Subtotal</span>
-          <span>{subtotal}</span>
+          <span>${subtotal}</span>
         </div>
-        <div>
+        <hr />
+        <div className="order-bill-item">
           <span>Delivery</span>
           <span>Free</span>
         </div>
-        <div>
-          <span>Total</span>
-          <span>{total.toFixed(2)}</span>
+        <hr />
+        <div className="order-bill-item">
+          <span className="order-bill-item-total">Total</span>
+          <span className="order-bill-item-price">${total.toFixed(2)}</span>
         </div>
       </div>
-      <button onClick={onConfirm} type="button">
-        {' '}
-        Confirm order{' '}
+      <button className="order-confirm-btn" onClick={onConfirm} type="button">
+        Confirm order
       </button>
     </div>
   );

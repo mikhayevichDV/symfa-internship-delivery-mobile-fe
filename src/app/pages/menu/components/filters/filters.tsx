@@ -4,18 +4,50 @@ import SearchIcon from 'assets/images/icons/search.svg';
 
 import './style.scss';
 
-export const Filters = ({ types }: any) => {
+export const Filters = ({
+  types,
+  onChangeSearch,
+  onChangeFilters,
+}: {
+  types: string[];
+  onChangeFilters: (filters: string[]) => void;
+  onChangeSearch: (search: string) => void;
+}) => {
   const [isFilterContainerVisible, setFilterContainerVisible] =
     useState<boolean>(false);
+  const [filters, setFilters] = useState<string[]>([]);
+  const [search, setSearch] = useState<string>('');
+
+  const onToggleFilter = (type: string) => {
+    const activeFilters = filters.includes(type)
+      ? filters.filter(elem => elem !== type)
+      : [...filters, type];
+
+    setFilters(activeFilters);
+    onChangeFilters(activeFilters);
+  };
+
+  const searchSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onChangeSearch(search);
+  };
+
+  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
 
   return (
     <div className="filters">
       <div className="filters-controller">
         <form>
-          <button type="submit">
+          <button onClick={searchSubmit} type="submit">
             <img src={SearchIcon} alt="search" />
           </button>
-          <input type="text" placeholder="Search food..." />
+          <input
+            onChange={searchHandler}
+            type="text"
+            placeholder="Search food..."
+          />
         </form>
         <button
           className={
@@ -38,7 +70,11 @@ export const Filters = ({ types }: any) => {
           }
         >
           {types?.map((item: any) => (
-            <button className="filters-container-wrapper-item" type="button">
+            <button
+              onClick={() => onToggleFilter(item)}
+              className="filters-container-wrapper-item"
+              type="button"
+            >
               {item}
             </button>
           ))}

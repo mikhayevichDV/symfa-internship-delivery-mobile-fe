@@ -49,8 +49,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isLoginSuccess) {
-      // dispatch(setToken(loggedUser.token));
-      navigate('/client');
+      navigate('/client/home');
     }
   }, [isLoginSuccess]);
 
@@ -102,7 +101,7 @@ export const Login = () => {
             <AuthButton type="submit" label="Login" />
           </div>
           <div>
-            <Link to="recover">Forgot password?</Link>
+            <Link to="auth/recover">Forgot password?</Link>
           </div>
         </form>
       )}

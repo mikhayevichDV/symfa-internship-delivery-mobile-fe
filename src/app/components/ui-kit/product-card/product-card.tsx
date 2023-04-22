@@ -1,6 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
 import FavoriteIcon from 'assets/images/icons/favorite.svg';
-import { useAppSelector } from '@core/hooks';
 import { useAddToOrderMutation } from '@store/order';
 
 import './style.scss';
@@ -21,11 +20,10 @@ export const ProductCard: FC<IProductCardProps> = ({
   price,
   photo,
 }) => {
-  const userId = useAppSelector(state => state?.user?.user?.id);
   const [addToCart] = useAddToOrderMutation();
   const addToOrder = async (e: MouseEvent<HTMLButtonElement>): Promise<any> => {
     e.preventDefault();
-    await addToCart({ id: userId, data: { id } });
+    await addToCart({ data: { id } });
   };
 
   return (
@@ -38,7 +36,7 @@ export const ProductCard: FC<IProductCardProps> = ({
       </div>
       <span className="product-card-title">{title}</span>
       <span className="product-card-description">
-        {flavourType} {title}
+        {flavourType} {title.toLowerCase()}
       </span>
       <div className="product-card-price">
         <span className="product-card-price-currency">$</span>

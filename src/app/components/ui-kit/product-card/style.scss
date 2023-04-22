@@ -3,7 +3,7 @@
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 0 20px;
   box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
@@ -40,12 +40,11 @@
   &-title {
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
     color: $main-font-color;
   }
 
   &-description {
-    line-height: 28px;
+    line-height: 15px;
     text-align: center;
     font-size: 10px;
     color: $description-font-color;
@@ -53,7 +52,7 @@
 
   &-price {
     &-currency {
-      font-size: 12px;
+      font-size: 0.7em;
       color: #99C932;
     }
 

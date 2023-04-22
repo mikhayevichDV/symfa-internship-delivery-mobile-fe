@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
+    "dayjs": "^1.11.7",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

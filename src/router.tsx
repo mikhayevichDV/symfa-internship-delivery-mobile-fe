@@ -5,11 +5,14 @@ import { ClientLayout } from '@layouts/client-layout';
 import { OrderLayout } from '@layouts/order-layout';
 import { Login, RecoverPassword, Register } from '@pages/auth/components';
 import {
+  Account,
   Favorite,
   FoodDetail,
+  History,
   Home,
   Notifications,
   Order,
+  Payment,
   Profile,
 } from '@pages/menu/components';
 
@@ -26,7 +29,15 @@ export const router = createBrowserRouter([
       { index: true, path: 'home', element: <Home {...props} /> },
       { path: 'favorite', element: <Favorite {...props} /> },
       { path: 'notifications', element: <Notifications {...props} /> },
-      { path: 'profile', element: <Profile {...props} /> },
+      {
+        path: 'profile',
+        element: <Profile {...props} />,
+        children: [
+          { path: 'account', element: <Account /> },
+          { index: true, path: 'payment', element: <Payment /> },
+          { path: 'history', element: <History /> },
+        ],
+      },
     ],
   },
   {

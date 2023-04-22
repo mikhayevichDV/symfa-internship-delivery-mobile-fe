@@ -7,6 +7,7 @@ import './style.scss';
 
 export const ClientLayout: React.FC = () => {
   const { isError } = useGetCurrentUserQuery(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {

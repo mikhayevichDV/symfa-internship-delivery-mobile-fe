@@ -6,7 +6,7 @@ export const historyApi = createApi({
   baseQuery: BASE_QUERY,
   endpoints: builder => ({
     createHistory: builder.mutation({
-      query({ data }) {
+      query(data) {
         return {
           url: `history/create`,
           method: 'POST',
@@ -14,7 +14,12 @@ export const historyApi = createApi({
         };
       },
     }),
+    getHistory: builder.query({
+      query: () => ({
+        url: `history/get`,
+      }),
+    }),
   }),
 });
 
-export const { useCreateHistoryMutation } = historyApi;
+export const { useCreateHistoryMutation, useGetHistoryQuery } = historyApi;

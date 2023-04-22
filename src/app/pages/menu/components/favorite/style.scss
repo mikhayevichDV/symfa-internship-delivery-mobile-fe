@@ -2,6 +2,26 @@
 
 .favorite {
 
+  &-yourfav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    color: $main-font-color;
+
+    span {
+      font-weight: bold;
+    }
+
+    button {
+      border-radius: 10px;
+      padding: 5px;
+      background-color: transparent;
+      color: $main-font-color;
+      border-color: $description-font-color;
+    }
+  }
+
   &-ad-container {
     display: flex;
     justify-content: center;
