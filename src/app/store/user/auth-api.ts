@@ -14,9 +14,9 @@ export const authApi = createApi({
       },
     }),
     updateUser: builder.mutation({
-      query({ id, data }) {
+      query({ data }) {
         return {
-          url: `update/${id}`,
+          url: `auth/update`,
           method: 'PATCH',
           body: data,
         };
@@ -27,6 +27,15 @@ export const authApi = createApi({
         return {
           url: `auth/user/login`,
           method: 'POST',
+          body: data,
+        };
+      },
+    }),
+    recoverPassword: builder.mutation({
+      query(data) {
+        return {
+          url: `auth/recover`,
+          method: 'PATCH',
           body: data,
         };
       },
@@ -46,5 +55,6 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useLoginUserMutation,
+  useRecoverPasswordMutation,
   useGetCurrentUserQuery,
 } = authApi;

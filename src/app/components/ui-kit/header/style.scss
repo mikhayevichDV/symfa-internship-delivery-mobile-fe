@@ -1,0 +1,22 @@
+@import '../../../../styles/theme/index';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 13vh;
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    color: $main-font-color;
+    width: 40vw;
+  }
+
+  &-img {
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+  }
+}

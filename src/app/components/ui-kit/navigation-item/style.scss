@@ -1,0 +1,7 @@
+@import 'src/styles/theme/index.scss';
+
+.nav-item-link {
+  &:active {
+    fill: $main-button-background-color;
+  }
+}

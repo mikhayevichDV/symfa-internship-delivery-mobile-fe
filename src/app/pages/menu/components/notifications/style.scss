@@ -1,0 +1,115 @@
+@import 'src/styles/theme/index.scss';
+
+.notifications {
+  padding: 20px;
+
+  &-header {
+    color: $main-font-color;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+
+    &-item {
+      width: 90vw;
+      height: 15vh;
+      border-radius: 20px;
+      box-shadow: 0 0 10px 1px rgba(34, 60, 80, 0.1);
+      background-color: $items-background-color;
+
+      &-courier {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        &-info {
+          display: flex;
+          align-items: center;
+
+          img {
+            border-radius: 20px;
+            width: 8vh;
+            height: 8vh;
+          }
+
+          &-text {
+            &-username {
+              font-weight: bold;
+              color: $main-font-color;
+            }
+
+            &-id {
+              font-size: 0.8em;
+              color: $description-font-color;
+            }
+
+            &-role {
+              font-size: 0.6em;
+              color: $demarcation-line-color;
+            }
+          }
+        }
+
+        &-call {
+          &-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            border-radius: 15px;
+            box-shadow: 0 0 10px 1px rgba(34, 60, 80, 0.1);
+            width: 5vh;
+            height: 5vh;
+            background-color: $main-button-background-color;
+          }
+        }
+      }
+
+      &-delimiter {
+        color: $demarcation-line-color;
+        border-style: dashed;
+      }
+
+      &-order {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 40%;
+
+        &-unit {
+          display: flex;
+
+          img {
+            padding: 6px;
+            margin-right: 5px;
+            width: 3vh;
+            height: 3vh;
+            border-radius: 10px;
+            background-color: $main-button-background-color;
+          }
+
+          &-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &-title {
+              font-size: 0.5em;
+              color: $demarcation-line-color;
+            }
+
+            &-content {
+              font-size: 0.7em;
+              font-weight: bold;
+              color: $main-font-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

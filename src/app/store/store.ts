@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { authApi } from '@store/user';
-import { userReducer } from './user/auth-slice';
+import { historyApi } from './history';
+import { orderApi } from './order';
 import { productsApi } from './products';
+import { promoCodesApi } from './promo-codes';
+import { authApi, userReducer } from './user';
 
 const persistConfig = {
   key: 'root',
@@ -16,12 +18,18 @@ export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
+    [promoCodesApi.reducerPath]: promoCodesApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
+    [historyApi.reducerPath]: historyApi.reducer,
     user: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware(),
+    ...getDefaultMiddleware({ serializableCheck: false }),
     authApi.middleware,
     productsApi.middleware,
+    orderApi.middleware,
+    promoCodesApi.middleware,
+    historyApi.middleware,
   ],
 });
 

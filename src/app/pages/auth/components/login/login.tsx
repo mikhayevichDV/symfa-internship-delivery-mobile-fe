@@ -1,14 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { Button, PasswordInput, TextInput } from '@components/ui-kit';
-import { useAppDispatch, useAppSelector } from '@core/hooks';
-import {
-  setToken,
-  setUser,
-  useGetCurrentUserQuery,
-  useLoginUserMutation,
-} from '@store/user';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
+import { useAppDispatch } from '@core/hooks';
+import { logout, useLoginUserMutation } from '@store/user';
 
 import './style.scss';
 
@@ -26,7 +21,6 @@ export const Login = () => {
   });
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const selectedToken: string = useAppSelector(state => state.user.token);
 
   const onEmailChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,30 +35,30 @@ export const Login = () => {
     },
     [],
   );
-  const redirect = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [loginUser, { data: loggedUser, isLoading, isSuccess }] =
+  const [loginUser, { isLoading, isSuccess: isLoginSuccess }] =
     useLoginUserMutation();
-
-  const { data: allLoggedUser } = useGetCurrentUserQuery(selectedToken);
 
   const onFinish = async () => {
     if (email && password) {
       await loginUser({ email, password });
-      dispatch(setUser(allLoggedUser.user));
     }
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      dispatch(setToken(loggedUser.token));
-      redirect('/client');
+    if (isLoginSuccess) {
+      navigate('/client/home');
     }
-  }, [isSuccess]);
+  }, [isLoginSuccess]);
+
+  useEffect(() => {
+    dispatch(logout());
+  }, []);
 
   return (
-    <>
+    <div>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
@@ -102,12 +96,14 @@ export const Login = () => {
               </div>
             )}
           </div>
-
+          <div className="login-recover">
+            <Link to="recover">Forgot password?</Link>
+          </div>
           <div className="login-button">
-            <Button type="submit" label="Login" />
+            <AuthButton type="submit" label="Login" />
           </div>
         </form>
       )}
-    </>
+    </div>
   );
 };

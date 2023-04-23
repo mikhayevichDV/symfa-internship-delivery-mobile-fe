@@ -1,0 +1,54 @@
+@import 'src/styles/theme/index.scss';
+
+* {
+  margin: 0;
+}
+
+.auth-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 40px 40px;
+  box-shadow: 0 0 10px 1px rgba(34, 60, 80, 0.1);
+  height: 35vh;
+  background-color: #FFFFFF;
+
+  &-logo {
+    height: 10vh;
+    width: 10vh;
+  }
+
+  &-title {
+    font-weight: bold;
+    font-size: 28px;
+    color: $main-font-color;
+  }
+
+  &-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: $description-font-color;
+  }
+
+  &-navbar {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    bottom: 0;
+
+    &-item {
+      color: $nav-link-color;
+      padding-bottom: 10px;
+    }
+
+    .active {
+      border-bottom-style: solid;
+      border-bottom-color: $main-button-background-color;
+      border-bottom-width: 2px;
+    }
+  }
+}

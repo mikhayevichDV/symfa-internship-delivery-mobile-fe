@@ -1,0 +1,145 @@
+@import 'src/styles/theme/index.scss';
+
+.food-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5vh;
+
+  &-img-container {
+    position: relative;
+    right: 0;
+    top: 0;
+    height: 40vh;
+    width: 90vw;
+
+    &-dish {
+      height: 100%;
+      width: 100%;
+      border-radius: 0 0 0 15%;
+      box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
+    }
+
+    &-favorite {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      width: 6vh;
+      height: 6vh;
+      border-radius: 40% 0 0 0;
+      opacity: 0.9;
+      background-color: $main-button-background-color;
+    }
+  }
+
+  &-description {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10vw;
+    height: 45vh;
+    width: 70vw;
+    border-radius: 15% 0 0 0;
+    box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
+    color: $main-font-color;
+    background-color: $items-background-color;
+
+    &-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &-title {
+        display: flex;
+        flex-direction: column;
+
+        &-name {
+          font-weight: bold;
+          color: $main-font-color;
+        }
+
+        &-type {
+          font-size: 0.8em;
+          color: $description-font-color;
+        }
+      }
+
+      &-price {
+        &-usd {
+          font-size: 0.7em;
+          color: $usd-color;
+        }
+
+        &-amount {
+          font-weight: bold;
+        }
+      }
+    }
+
+    &-info {
+      display: flex;
+      gap: 10px;
+
+      img {
+        width: 3vh;
+        height: 3vh;
+      }
+
+      &-rating {
+        display: flex;
+        align-items: center;
+
+        &-img {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 4vh;
+          height: 4vh;
+          border-radius: 10px;
+          background-color: #FFF9DD;
+        }
+      }
+
+      &-time {
+        display: flex;
+        align-items: center;
+
+        &-img {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 4vh;
+          height: 4vh;
+          border-radius: 10px;
+          background-color: #E0DEE3;
+        }
+      }
+    }
+
+    &-about {
+      span {
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 0.9em;
+      }
+    }
+
+    &-btn {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        font-weight: bold;
+        width: 40vw;
+        height: 5vh;
+        padding: 10px;
+        border: 0;
+        border-radius: 20px;
+        color: $main-font-color;
+        background-color: $main-button-background-color;
+      }
+    }
+  }
+}

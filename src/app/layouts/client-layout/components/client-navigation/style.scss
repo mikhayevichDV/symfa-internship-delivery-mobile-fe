@@ -1,0 +1,55 @@
+@import 'src/styles/theme/index.scss';
+
+.navigation {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $items-background-color;
+
+  .active {
+    svg {
+      fill: $main-button-background-color;
+    }
+  }
+
+  a {
+    height: 4vh;
+    width: 4vh;
+
+
+  }
+
+  &-bar {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    &-cart {
+      display: flex;
+      justify-content: center;
+
+      &-wrapper {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 3vh;
+        border: 2px solid $items-background-color;
+        border-radius: 50%;
+        height: 6vh;
+        width: 6vh;
+        background-color: $main-button-background-color;
+      }
+    }
+
+    &-list {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      &-svg {
+      }
+    }
+  }
+}

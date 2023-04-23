@@ -7,14 +7,16 @@ interface ITextInputProps {
   id: string;
   label: string;
   type: string;
+  value?: string;
   onChange: any;
-  validation: UseFormRegisterReturn<'email' | 'username'>;
+  validation: UseFormRegisterReturn<'email' | 'username' | 'address'>;
 }
 
 export const TextInput = ({
   label,
   id,
   type,
+  value,
   onChange,
   validation,
 }: ITextInputProps) => {
@@ -23,8 +25,8 @@ export const TextInput = ({
       <label htmlFor={id}>{label}</label>
       <input
         {...validation}
+        value={value}
         onChange={onChange}
-        className=""
         type={type}
         id={id}
       />
