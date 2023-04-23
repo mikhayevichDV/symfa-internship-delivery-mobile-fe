@@ -6,7 +6,7 @@ import { config } from '@core/config';
 
 import './style.scss';
 
-export const ProductsContainer = ({ products }: any) => {
+export const ProductsContainer = ({ products }: { products: IProducts[] }) => {
   return (
     <div className="product-container">
       {products?.map((item: IProducts) => {
