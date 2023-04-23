@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { format } from '@core/utils';
-import { useGetHistoryQuery } from '@store/history';
+import { useGetHistoryMutation } from '@store/history';
 import { IHistory } from './models';
 
 import './style.scss';
 
 export const History = () => {
-  const { data: history } = useGetHistoryQuery({});
+  const [getHistory, { data: history }] = useGetHistoryMutation({});
+
+  useEffect(() => {
+    getHistory({});
+    const time = setInterval(() => {
+      getHistory({});
+    }, 10000);
+
+    return () => clearInterval(time);
+  }, []);
+
+  const delivered = history?.filter(
+    (elem: IHistory) => elem.status === 'delivered',
+  );
 
   return (
     <div className="history">
-      {history ? (
+      {delivered?.length > 1 ? (
         <div className="history-list">
-          {history.map((elem: IHistory) => {
+          {delivered.map((elem: IHistory) => {
             return (
-              <div className="history-list-item">
+              <div key={elem.orderId} className="history-list-item">
                 <p>
                   <b>Order ID:</b> {elem.orderId}
                 </p>

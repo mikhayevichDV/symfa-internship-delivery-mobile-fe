@@ -3,7 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { historyApi } from './history';
 import { orderApi } from './order';
-import { productsApi, productsReducer } from './products';
+import { productsApi } from './products';
 import { promoCodesApi } from './promo-codes';
 import { authApi, userReducer } from './user';
 
@@ -22,10 +22,9 @@ export const store = configureStore({
     [orderApi.reducerPath]: orderApi.reducer,
     [historyApi.reducerPath]: historyApi.reducer,
     user: persistedReducer,
-    product: productsReducer,
   },
   middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware(),
+    ...getDefaultMiddleware({ serializableCheck: false }),
     authApi.middleware,
     productsApi.middleware,
     orderApi.middleware,

@@ -51,9 +51,9 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 0,
     '@typescript-eslint/no-unused-expressions': [2, { allowTernary: true }],
-    'react/require-default-props': 0, // FIXME: for ref
-    'react/no-unused-prop-types': 0, // FIXME: for ref
-    'react/no-unstable-nested-components': 0, // FIXME: for ref
+    'react/require-default-props': 0,
+    'react/no-unused-prop-types': 0,
+    'react/no-unstable-nested-components': 0,
     'react/jsx-no-useless-fragment': [2, { allowExpressions: true }],
     'react/function-component-definition': [
       2,

@@ -6,7 +6,7 @@ import { ClientNavigation } from './components';
 import './style.scss';
 
 export const ClientLayout: React.FC = () => {
-  const { isError } = useGetCurrentUserQuery(null);
+  const { isLoading, isError } = useGetCurrentUserQuery(null);
 
   const navigate = useNavigate();
 
@@ -18,9 +18,8 @@ export const ClientLayout: React.FC = () => {
 
   return (
     <div className="client-layout">
-      <div className="client-layout-content">
-        <Outlet />
-      </div>
+      <div>{isLoading ? <div>Loading...</div> : <Outlet />}</div>
+      <div className="client-layout-empty" />
       <ClientNavigation />
     </div>
   );

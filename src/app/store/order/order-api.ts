@@ -25,20 +25,18 @@ export const orderApi = createApi({
       },
     }),
     incrementCount: builder.mutation({
-      query({ id, data }) {
+      query({ id }) {
         return {
           url: `order/increment/${id}`,
           method: 'PATCH',
-          body: data,
         };
       },
     }),
     decrementCount: builder.mutation({
-      query({ id, data }) {
+      query({ id }) {
         return {
           url: `order/decrement/${id}`,
           method: 'PATCH',
-          body: data,
         };
       },
     }),

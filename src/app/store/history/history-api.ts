@@ -14,7 +14,7 @@ export const historyApi = createApi({
         };
       },
     }),
-    getHistory: builder.query({
+    getHistory: builder.mutation({
       query: () => ({
         url: `history/get`,
       }),
@@ -22,4 +22,4 @@ export const historyApi = createApi({
   }),
 });
 
-export const { useCreateHistoryMutation, useGetHistoryQuery } = historyApi;
+export const { useCreateHistoryMutation, useGetHistoryMutation } = historyApi;

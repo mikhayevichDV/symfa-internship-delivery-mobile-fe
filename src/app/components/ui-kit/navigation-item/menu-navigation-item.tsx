@@ -5,14 +5,13 @@ import './style.scss';
 
 interface INavigationItemProps {
   to: string;
-  Img: typeof React.Component;
+  Img: any;
 }
 
-// TODO type
-export const MenuNavigationItem: any = ({ Img, to }: INavigationItemProps) => {
+export const MenuNavigationItem = ({ Img, to }: INavigationItemProps) => {
   return (
-    <NavLink to={to}>
-      <Img style={{ width: '30px', height: '30px', fill: 'red' }} />
+    <NavLink className="nav-item-link" to={to}>
+      <Img style={{ width: '30px', height: '30px' }} />
     </NavLink>
   );
 };

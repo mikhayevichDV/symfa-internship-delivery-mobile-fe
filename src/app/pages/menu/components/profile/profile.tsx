@@ -1,13 +1,19 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { config } from '@core/config';
-import { useAppSelector } from '@core/hooks';
 import { guard } from '@core/utils/HOC';
+import { useGetCurrentUserQuery } from '@store/user';
 
 import './style.scss';
 
 const ProfileComponent: React.FC = () => {
-  const user = useAppSelector(state => state.user.user);
+  const { data: userData, isLoading } = useGetCurrentUserQuery({});
+
+  const user = userData?.user;
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="profile">
@@ -18,7 +24,7 @@ const ProfileComponent: React.FC = () => {
         <div className="profile-header-info">
           <div className="profile-header-info-img-container">
             <img
-              src={`${config.API_URL}/${user?.avatar?.avatarPath}`}
+              src={`${config.API_URL}/${user?.avatar}`}
               alt="avatar"
               loading="lazy"
             />

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
+import { Filters, Header, ProductsContainer } from '@components/ui-kit';
 import { typesRefactor } from '@core/utils';
 import { guard } from '@core/utils/HOC';
 import { useGetProductsQuery, useGetTypesQuery } from '@store/products';
-import { Filters } from '../filters';
-import { Header } from '../header';
-import { ProductsContainer } from '../products-container';
 
 import './style.scss';
 
@@ -18,8 +16,6 @@ const HomeComponent: React.FC = () => {
     types: filters,
     title: searchTitle,
   });
-
-  console.log(products);
 
   const onChangeFilters = (activeFilters: string[]) => {
     setFilters(activeFilters);

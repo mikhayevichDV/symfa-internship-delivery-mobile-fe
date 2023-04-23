@@ -78,20 +78,6 @@
         display: flex;
         gap: 2vw;
       }
-
-      &-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 25vw;
-        border: 0;
-        border-radius: 20px;
-        box-shadow: 4px 4px 13px -7px rgba(34, 60, 80, 0.2);
-        font-weight: 400;
-        line-height: 28px;
-        color: $main-font-color;
-        background-color: $items-background-color;
-      }
     }
   }
 }

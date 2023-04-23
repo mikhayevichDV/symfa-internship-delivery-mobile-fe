@@ -5,16 +5,17 @@ import './style.scss';
 
 interface INavigationItemProps {
   to: string;
+  className: string;
   label?: string;
 }
 
-// TODO type
-export const AuthNavigationItem: any = ({
+export const AuthNavigationItem = ({
   to,
   label,
+  className,
 }: INavigationItemProps) => {
   return (
-    <NavLink to={to}>
+    <NavLink className={className} to={to}>
       <p>{label}</p>
     </NavLink>
   );

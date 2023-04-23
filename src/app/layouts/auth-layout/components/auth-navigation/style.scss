@@ -41,7 +41,14 @@
     bottom: 0;
 
     &-item {
-      
+      color: $nav-link-color;
+      padding-bottom: 10px;
+    }
+
+    .active {
+      border-bottom-style: solid;
+      border-bottom-color: $main-button-background-color;
+      border-bottom-width: 2px;
     }
   }
 }

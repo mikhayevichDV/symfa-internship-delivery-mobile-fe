@@ -96,12 +96,11 @@ export const Login = () => {
               </div>
             )}
           </div>
-
+          <div className="login-recover">
+            <Link to="recover">Forgot password?</Link>
+          </div>
           <div className="login-button">
             <AuthButton type="submit" label="Login" />
-          </div>
-          <div>
-            <Link to="auth/recover">Forgot password?</Link>
           </div>
         </form>
       )}

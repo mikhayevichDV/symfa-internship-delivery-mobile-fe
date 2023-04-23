@@ -5,11 +5,14 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  min-height: 100vh;
 
   &-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+    margin: 1vh 5vw;
 
     &-title {
       color: $main-font-color;

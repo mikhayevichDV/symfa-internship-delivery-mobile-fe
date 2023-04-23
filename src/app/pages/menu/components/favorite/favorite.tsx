@@ -1,23 +1,46 @@
-import React from 'react';
-import { FavoriteAd } from '@components/ui-kit';
+import React, { useState } from 'react';
+import {
+  FavoriteAd,
+  Filters,
+  Header,
+  ProductsContainer,
+} from '@components/ui-kit';
+import { typesRefactor } from '@core/utils';
 import { guard } from '@core/utils/HOC';
-import { Header } from '@pages/menu/components/header';
-import { ProductsContainer } from '@pages/menu/components/products-container';
-import { useGetFavoriteProductsQuery } from '@store/products';
+import {
+  useGetFavoriteProductsQuery,
+  useGetFlavourTypesQuery,
+} from '@store/products';
 
 import './style.scss';
 
 const FavoriteComponent: React.FC = () => {
-  // const { data: flavourTypes } = useGetFlavourTypesQuery({});
-  const { data: favoriteProducts } = useGetFavoriteProductsQuery({});
+  const { data: flavourTypes } = useGetFlavourTypesQuery({});
+
+  const [filters, setFilters] = useState<string[]>([]);
+  const [searchTitle, setSearchTitle] = useState<string>('');
+
+  const { data: favoriteProducts } = useGetFavoriteProductsQuery({
+    flavourTypes: filters,
+    title: searchTitle,
+  });
+
+  const onChangeFilters = (activeFilters: string[]) => {
+    setFilters(activeFilters);
+  };
+
+  const onChangeSearch = (search: string) => {
+    setSearchTitle(search);
+  };
 
   return (
     <div className="favorite">
       <Header title="Favorite food" />
-      {/* <Filters */}
-      {/*  onChangeFilters={console.log} */}
-      {/*  types={typesRefactor(flavourTypes)} */}
-      {/* /> */}
+      <Filters
+        onChangeSearch={onChangeSearch}
+        onChangeFilters={onChangeFilters}
+        types={typesRefactor(flavourTypes)}
+      />
       <div className="favorite-ad-container">
         <FavoriteAd />
       </div>

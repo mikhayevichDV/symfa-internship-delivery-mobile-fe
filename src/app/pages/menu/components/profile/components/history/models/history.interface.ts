@@ -9,5 +9,5 @@ export interface IHistory {
   deliveryTime: number;
   status: string;
   user: IUserRequest;
-  courier: IUserRequest;
+  courier: IUserRequest[];
 }

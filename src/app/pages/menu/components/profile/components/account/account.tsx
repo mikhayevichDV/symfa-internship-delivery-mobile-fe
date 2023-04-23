@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { TextInput } from '@components/ui-kit';
-import { useAppSelector } from '@core/hooks';
-import { useUpdateUserMutation } from '@store/user';
+import { useGetCurrentUserQuery, useUpdateUserMutation } from '@store/user';
 
 import './style.scss';
 
@@ -20,7 +20,9 @@ export const Account = () => {
       address: '',
     },
   });
-  const user = useAppSelector(state => state.user.user);
+  const { data: userData } = useGetCurrentUserQuery({});
+
+  const user = userData?.user;
   const [email, setEmail] = useState<string | undefined>(user?.email);
   const [username, setUsername] = useState<string | undefined>(user?.username);
   const [address, setAddress] = useState<string | undefined>(user?.address);
@@ -46,13 +48,19 @@ export const Account = () => {
     [],
   );
 
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    navigate('/auth');
+  };
+
   const onFinish = async () => {
     await updateUser({ data: { username, email, address } });
   };
 
   return (
-    <form onSubmit={handleSubmit(onFinish)}>
-      <div className="register-inputs">
+    <form className="account" onSubmit={handleSubmit(onFinish)}>
+      <div className="account-inputs">
         <TextInput
           validation={{
             ...register('username', {
@@ -119,7 +127,14 @@ export const Account = () => {
           </div>
         )}
       </div>
-      <button type="submit">Submit</button>
+      <div className="account-submit">
+        <button onClick={onLogout} className="account-submit-btn" type="button">
+          Logout
+        </button>
+        <button className="account-submit-btn" type="submit">
+          Edit
+        </button>
+      </div>
     </form>
   );
 };

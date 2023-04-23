@@ -4,12 +4,7 @@ export interface IUserRequest {
   email: string;
   userId: string;
   address: string;
-  avatar: IAvatar;
-}
-
-export interface IAvatar {
-  id: string;
-  avatarPath: string;
+  avatar: string;
 }
 
 export interface IUserResponse {

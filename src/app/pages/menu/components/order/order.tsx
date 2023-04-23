@@ -45,7 +45,9 @@ const OrderComponent: React.FC = () => {
   };
 
   const onConfirm = async () => {
-    await confirmOrder({ address: userAddress });
+    total
+      ? await confirmOrder({ total, address: userAddress })
+      : await confirmOrder({ address: userAddress });
   };
 
   return (
@@ -70,7 +72,7 @@ const OrderComponent: React.FC = () => {
             <div className="order-content-item" key={elem.id}>
               <img
                 className="order-content-item-img"
-                src={`${config.API_URL}/${elem.photo.photoPath}`}
+                src={`${config.API_URL}/${elem.photo}`}
                 alt="dish"
                 loading="lazy"
               />
@@ -78,7 +80,7 @@ const OrderComponent: React.FC = () => {
                 <div className="order-content-item-info-title">
                   <span className="order-content-item-bold">{elem.title}</span>
                   <span>
-                    {elem.flavourType} {elem.title.toLowerCase()}
+                    {elem.flavourType} {elem.title?.toLowerCase()}
                   </span>
                 </div>
                 <div className="order-content-item-info-price">
@@ -136,7 +138,9 @@ const OrderComponent: React.FC = () => {
         <hr />
         <div className="order-bill-item">
           <span className="order-bill-item-total">Total</span>
-          <span className="order-bill-item-price">${total.toFixed(2)}</span>
+          <span className="order-bill-item-price">
+            ${total ? total.toFixed(2) : subtotal}
+          </span>
         </div>
       </div>
       <button className="order-confirm-btn" onClick={onConfirm} type="button">

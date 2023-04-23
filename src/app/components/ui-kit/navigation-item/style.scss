@@ -1,12 +1,7 @@
 @import 'src/styles/theme/index.scss';
 
-.nav-img {
-  height: 5vh;
-  width: 5vh;
-}
-
-.active {
-  border-bottom-style: solid;
-  border-bottom-color: $main-button-background-color;
-  border-bottom-width: 2px;
+.nav-item-link {
+  &:active {
+    fill: $main-button-background-color;
+  }
 }

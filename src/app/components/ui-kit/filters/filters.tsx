@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FilterIcon from 'assets/images/icons/filter.svg';
 import SearchIcon from 'assets/images/icons/search.svg';
+import { FilterBtn } from '@components/ui-kit';
 
 import './style.scss';
 
@@ -17,6 +18,7 @@ export const Filters = ({
     useState<boolean>(false);
   const [filters, setFilters] = useState<string[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [filterActive, setFilterActive] = useState<boolean>(false);
 
   const onToggleFilter = (type: string) => {
     const activeFilters = filters.includes(type)
@@ -25,6 +27,7 @@ export const Filters = ({
 
     setFilters(activeFilters);
     onChangeFilters(activeFilters);
+    setFilterActive(!filterActive);
   };
 
   const searchSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -70,13 +73,11 @@ export const Filters = ({
           }
         >
           {types?.map((item: any) => (
-            <button
+            <FilterBtn
+              key={item}
               onClick={() => onToggleFilter(item)}
-              className="filters-container-wrapper-item"
-              type="button"
-            >
-              {item}
-            </button>
+              label={item}
+            />
           ))}
         </div>
       </div>
