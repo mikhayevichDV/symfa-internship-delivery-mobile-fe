@@ -6,7 +6,6 @@ import { config } from '@core/config';
 
 import './style.scss';
 
-// TODO types
 export const ProductsContainer = ({ products }: any) => {
   return (
     <div className="product-container">

@@ -12,7 +12,7 @@ export const History = () => {
     getHistory({});
     const time = setInterval(() => {
       getHistory({});
-    }, 10000);
+    }, 60000);
 
     return () => clearInterval(time);
   }, []);

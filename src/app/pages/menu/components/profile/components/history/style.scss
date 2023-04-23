@@ -15,7 +15,7 @@
       justify-content: center;
       width: 70%;
       border-radius: 20px;
-      box-shadow: 0 0 5px 1px rgba(34, 60, 80, 0.1);
+      box-shadow: $base-shadow;
       background-color: $items-background-color;
 
       p {

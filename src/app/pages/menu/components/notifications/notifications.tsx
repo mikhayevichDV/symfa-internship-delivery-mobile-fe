@@ -17,7 +17,7 @@ const NotificationsComponent: any = () => {
     getHistory({});
     const time = setInterval(() => {
       getHistory({});
-    }, 10000);
+    }, 60000);
 
     return () => clearInterval(time);
   }, []);
@@ -39,7 +39,10 @@ const NotificationsComponent: any = () => {
                 <div className="notifications-content-item-courier">
                   {elem.courier.map((item: IUserRequest) => {
                     return (
-                      <div className="notifications-content-item-courier-info">
+                      <div
+                        key={item.userId}
+                        className="notifications-content-item-courier-info"
+                      >
                         <img
                           className="notifications-content-item-courier-info-img"
                           src={`${config.API_URL}/${item?.avatar}`}

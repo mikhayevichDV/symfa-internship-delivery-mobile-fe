@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthButton, PasswordInput, TextInput } from '@components/ui-kit';
 import { useRecoverPasswordMutation } from '@store/user';
 
-import './style.scss';
-
 export const RecoverPassword = () => {
   const [recover] = useRecoverPasswordMutation();
   const {

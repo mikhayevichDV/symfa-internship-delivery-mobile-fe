@@ -17,7 +17,7 @@
       height: 100%;
       width: 100%;
       border-radius: 0 0 0 15%;
-      box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
+      box-shadow: $base-shadow;
     }
 
     &-favorite {
@@ -41,7 +41,7 @@
     height: 45vh;
     width: 70vw;
     border-radius: 15% 0 0 0;
-    box-shadow: 0 5px 10px -5px rgba(34, 60, 80, 0.2);
+    box-shadow: $base-shadow;
     color: $main-font-color;
     background-color: $items-background-color;
 

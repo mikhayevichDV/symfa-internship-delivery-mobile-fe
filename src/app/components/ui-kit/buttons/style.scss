@@ -6,7 +6,7 @@
   border-radius: 15px;
   height: 45px;
   width: 250px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  box-shadow: $base-shadow;
 }
 
 .filter-btn {
@@ -16,7 +16,7 @@
   min-width: 25vw;
   border: 0;
   border-radius: 20px;
-  box-shadow: 4px 4px 13px -7px rgba(34, 60, 80, 0.2);
+  box-shadow: $base-shadow;
   font-weight: 400;
   line-height: 28px;
   color: $main-font-color;
